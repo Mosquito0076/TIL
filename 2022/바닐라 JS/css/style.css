@@ -1,0 +1,49 @@
+.hidden {
+  display: none;
+}
+
+img { 
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width : 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#weather {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5%;
+}
+
+#main {
+  width: 40%;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5%;
+  position: absolute;
+  margin-top: 10%;
+}
+
+#clock {
+  font-size: 500%;
+}
+
+span, #clock, h1 {
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.button {
+  background: rgb(0,24,36);
+  background: linear-gradient(135deg, rgba(0,24,36,0.9444152661064426) 0%, rgba(31,85,122,1) 99%);
+  border: 0px;
+  border-radius: 5%;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
+
+.todo-item {
+  font-size: 18px;
+}

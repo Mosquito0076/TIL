@@ -1,14 +1,14 @@
 const toDoForm = document.querySelector("form#todo-form");
 const toDoInput = toDoForm.querySelector("input");
-const toDoList = document.querySelector("ul#todo-list");
+const toDoList = document.querySelector("div#todo-list");
 const TODOS_KEY = "todos";
 let toDos = loadTodos();
 
 function deleteTodo(event) {
-  const li = event.target.parentElement;
-  toDos = toDos.filter(todo => todo.id !== parseInt(li.id));
+  const div = event.target.parentElement;
+  toDos = toDos.filter(todo => todo.id !== parseInt(div.id));
   saveTodos();
-  li.remove();
+  div.remove();
 }
 
 
@@ -31,29 +31,34 @@ function loadTodos() {
 
 
 function paintToDo(newTodo) {
-  const li = document.createElement("li");
-  li.id = newTodo.id;
+  const div = document.createElement("div");
+  div.id = newTodo.id;
+  div.setAttribute('class', 'd-flex col-12 justify-content-center')
   
   const span = document.createElement("span");
-  span.innerText = newTodo.text;
+  span.innerText = `${newTodo.text}  `;
+  span.setAttribute('class', 'todo-item')
   
   const button = document.createElement("button");
-  button.innerText = "DELETE";
+  button.setAttribute("class", "delete-button btn btn-danger");
+  button.innerText = "X";
   button.addEventListener("click", deleteTodo);
   
-  li.append(span, button);
-  toDoList.appendChild(li);
+  div.append(span, button);
+  toDoList.appendChild(div);
 }
 
 
 
 function toDoSubmit(event) {
   event.preventDefault();
-  const newTodo = { id: Date.now(), text: toDoInput.value };
-  event.target.reset();
-  toDos.push(newTodo);
-  saveTodos(newTodo);
-  paintToDo(newTodo);
+  if (toDoInput.value.trim()) {
+    const newTodo = { id: Date.now(), text: toDoInput.value };
+    event.target.reset();
+    toDos.push(newTodo);
+    saveTodos(newTodo);
+    paintToDo(newTodo);
+  }
 }
 
 toDoForm.addEventListener("submit", toDoSubmit);
